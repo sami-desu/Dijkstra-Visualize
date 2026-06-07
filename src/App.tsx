@@ -154,7 +154,7 @@ export default function App() {
         <div className="max-w-[1850px] mx-auto flex items-center justify-between gap-4 flex-wrap">
           <div className="flex items-center gap-3">
             <img 
-              src="./favicon.ico" 
+              src={`${(import.meta as any).env.BASE_URL}favicon.ico`} 
               alt="Logo" 
               className="w-11 h-11 rounded-md object-contain bg-slate-900/20 border border-slate-800/60 shadow-md shadow-blue-500/5 transition-transform duration-200 hover:scale-105"
               referrerPolicy="no-referrer"
