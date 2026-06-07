@@ -201,7 +201,7 @@ export default function App() {
                 <div className="space-y-1.5">
                   <h4 className="font-bold text-xs text-amber-200 uppercase tracking-wider">Đồ thị hiện trống!</h4>
                   <p className="text-[11px] text-slate-450 leading-relaxed">
-                    Hãy nạp ngay bản đồ mẫu hoặc nhấp nút tạo ngẫu nhiên dưới thanh điều khiển để trải nghiệm.
+                    Hãy nạp ngay đồ thị mẫu hoặc nhấp nút tạo ngẫu nhiên dưới thanh điều khiển để trải nghiệm.
                   </p>
                 </div>
                 <div className="flex flex-col gap-1.5 w-full pt-1.5">
@@ -209,13 +209,13 @@ export default function App() {
                     onClick={handleGenerateRandom}
                     className="px-3.5 py-1.5 text-xs font-bold bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl cursor-pointer transition-all shadow-md"
                   >
-                    🎲 Tạo Đồ Thị Ngẫu Nhiên
+                    Tạo Đồ Thị Ngẫu Nhiên
                   </button>
                   <button
                     onClick={() => handleLoadPreset(travelMapPreset)}
                     className="px-3.5 py-1.5 text-xs font-semibold bg-[#1e293b] hover:bg-[#334155] text-slate-200 rounded-xl cursor-pointer border border-slate-805 transition-all"
                   >
-                    🗺️ Tải Bản Đồ Việt Nam Mẫu
+                    Tải Đồ Thị Việt Nam Mẫu
                   </button>
                 </div>
               </div>
@@ -247,7 +247,7 @@ export default function App() {
             <div className="flex items-center gap-2">
               {/* Presets load dropdown selector */}
               <select
-                aria-label="Chọn bản đồ mẫu"
+                aria-label="Chọn đồ thị mẫu"
                 value=""
                 onChange={(e) => {
                   const preset = presets.find(p => p.name === e.target.value);
@@ -255,7 +255,7 @@ export default function App() {
                 }}
                 className="bg-slate-950 border border-slate-800 text-[11px] font-bold py-1 px-2 rounded-lg cursor-pointer text-slate-300 focus:outline-none focus:ring-1 focus:ring-blue-500"
               >
-                <option value="" disabled>🗺️ Tải Bản Đồ Mẫu...</option>
+                <option value="" disabled>Tải Đồ Thị Mẫu...</option>
                 {presets.map((preset, idx) => (
                   <option key={idx} value={preset.name}>
                     {preset.name} ({preset.nodes.length} đỉnh)
@@ -269,7 +269,7 @@ export default function App() {
                 className="p-1 px-1.5 rounded-lg bg-indigo-950/40 border border-indigo-900/60 text-indigo-300 hover:bg-indigo-900/40 cursor-pointer text-[10.5px] font-bold transition-all flex items-center gap-1"
                 title="Tạo đồ thị ngẫu nhiên"
               >
-                <span>🎲 Ngẫu nhiên</span>
+                <span>Ngẫu nhiên</span>
               </button>
 
               <button
@@ -448,7 +448,7 @@ export default function App() {
                 }`}
               >
                 <BookOpen className="w-3.5 h-3.5 text-blue-400" />
-                <span>Bảng giải tay dọn sẵn (Trace Table)</span>
+                <span>Bảng giải tay dọn sẵn</span>
               </button>
               <button
                 type="button"
@@ -460,7 +460,7 @@ export default function App() {
                 }`}
               >
                 <Terminal className="w-3.5 h-3.5 text-pink-400" />
-                <span>Trình theo dõi mã nguồn (Code Trace)</span>
+                <span>Trình theo dõi mã nguồn</span>
               </button>
             </div>
 

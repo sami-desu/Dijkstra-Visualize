@@ -6,10 +6,9 @@ import {
   SkipForward, 
   RotateCcw, 
   Sliders, 
-  Compass, 
   PlusCircle, 
   FileText,
-  Map,
+  Layers,
   Shuffle
 } from 'lucide-react';
 import { GraphNode, GraphEdge, DijkstraStep, SavedPreset } from '../types';
@@ -119,8 +118,8 @@ export default function ControlPanel({
       {/* 1. Preset Selector & Graph Setup */}
       <div id="setup-section" className="space-y-4">
         <div className="flex items-center gap-2 border-b border-slate-800/60 pb-2">
-          <Compass className="text-blue-400 w-4 h-4" />
-          <h3 className="font-bold text-sm text-slate-100">Bản đồ mẫu & Khởi tạo</h3>
+          <Layers className="text-blue-400 w-4 h-4" />
+          <h3 className="font-bold text-sm text-slate-100">Đồ thị mẫu & Khởi tạo</h3>
         </div>
 
         {/* Preset selections */}
@@ -135,7 +134,7 @@ export default function ControlPanel({
                 className="flex items-center justify-between text-left px-3 py-2 text-xs font-semibold rounded-xl border border-slate-800/80 bg-[#07070a]/40 hover:border-blue-500 hover:bg-slate-900/65 text-slate-350 cursor-pointer transition-all"
               >
                 <div className="flex items-center gap-2">
-                  <Map className="w-3.5 h-3.5 text-slate-500" />
+                  <FileText className="w-3.5 h-3.5 text-slate-500" />
                   <span>{preset.name}</span>
                 </div>
                 <span className="text-[10px] bg-slate-950 px-1.5 py-0.5 rounded-lg border border-slate-800/80 text-slate-400 font-mono">

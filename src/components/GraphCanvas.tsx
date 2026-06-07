@@ -394,7 +394,7 @@ export default function GraphCanvas({
             title="Chế độ chọn và di chuyển vật thể, kéo thả nền để dịch chuyển đồ thị"
           >
             <MousePointer className="w-3.5 h-3.5" />
-            <span>Di chuyển (V)</span>
+            <span>Di chuyển</span>
           </button>
 
           <button
@@ -455,7 +455,7 @@ export default function GraphCanvas({
             }`}
             title="Bật/Tắt hướng của đồ thị (Đồ thị có hướng/vô hướng)"
           >
-            <span>{isDirected ? '🏹 Có hướng (Directed)' : '➰ Vô hướng (Undirected)'}</span>
+            <span>{isDirected ? 'Có hướng' : 'Vô hướng'}</span>
           </button>
         </div>
 

@@ -1,7 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import { 
-  ListOrdered, 
-  Milestone,
+  Award,
   BookOpen,
   HelpCircle,
   ChevronDown,
@@ -218,31 +217,28 @@ export default function StatsPanel({
 
   return (
     <div id="stats-panel-main" className="bg-[#0d0d10] border border-slate-800/80 rounded-2xl flex flex-col h-full overflow-hidden shadow-2xl">
-      {/* Title Header (Compact and highly informative) */}
+      {/* Title Header (Compact and informative) */}
       <div className="flex items-center justify-between border-b border-slate-800/60 px-4 py-3 bg-slate-950/50 shrink-0">
         <span className="text-xs text-slate-200 uppercase tracking-widest flex items-center gap-2 font-black">
-          <BookOpen className="w-4 h-4 text-amber-500 animate-pulse" /> BẢNG GIẢI TAY TỔNG HỢP (LECTURE TRACE SHEET)
-        </span>
-        <span className="text-[10px] font-mono font-black text-amber-400 bg-amber-500/10 border border-amber-900/40 px-2 py-0.5 rounded-full flex items-center gap-1">
-          ● ĐỒNG BỘ
+          <BookOpen className="w-4 h-4 text-amber-500 animate-pulse" /> BẢNG GIẢI TAY TỔNG HỢP
         </span>
       </div>
 
       {/* Main Stats Panel Content */}
       <div className="flex-1 flex flex-col p-3 gap-2 min-h-0 overflow-hidden select-none">
         
-        {/* Sleek, space-saving row for Recommended Route & Queue */}
-        <div className="flex flex-col sm:flex-row items-stretch gap-2 shrink-0">
+        {/* Sleek, space-saving row for Recommended Route */}
+        <div className="flex gap-2 shrink-0">
           
           {/* LỘ TRÌNH KHUYẾN NGHỊ */}
-          <div className="flex-1 min-h-[38px] px-3 py-1 bg-gradient-to-r from-blue-950/20 to-indigo-950/20 border border-blue-900/20 rounded-lg flex items-center justify-between gap-1">
+          <div className="w-full min-h-[38px] px-3 py-1.5 bg-gradient-to-r from-blue-950/20 to-indigo-950/20 border border-blue-900/20 rounded-lg flex items-center justify-between gap-1 font-sans">
             <span className="text-[9.5px] text-slate-400 font-extrabold flex items-center gap-1 font-mono tracking-wider shrink-0">
-              <Milestone className="w-3.5 h-3.5 text-blue-400" /> KẾT QUẢ:
+              <Award className="w-3.5 h-3.5 text-blue-400" /> KẾT QUẢ LUYỆN TẬP:
             </span>
             {endNodeId ? (
               pathNodes.length > 0 ? (
-                <div className="flex items-center gap-2 overflow-hidden flex-1 justify-end">
-                  <div className="flex items-center gap-1 overflow-x-auto scrollbar-none max-w-[200px] py-0.5">
+                <div className="flex items-center gap-3 overflow-hidden flex-1 justify-end">
+                  <div className="flex items-center gap-1 overflow-x-auto scrollbar-none py-0.5">
                     {pathNodes.map((label, idx) => (
                       <React.Fragment key={idx}>
                         <span className={`px-1.5 py-0.5 rounded text-[10px] font-black shrink-0 ${
@@ -259,7 +255,7 @@ export default function StatsPanel({
                     ))}
                   </div>
                   <span className="text-[10px] text-slate-350 shrink-0 font-medium font-mono">
-                    d = <b className="text-emerald-400 bg-emerald-500/10 px-1 py-0.5 rounded border border-emerald-900/30 font-black">{totalLength}</b>
+                    d = <b className="text-emerald-400 bg-emerald-500/10 px-1 py-0.5 rounded border border-emerald-950/10 font-black">{totalLength}</b>
                   </span>
                 </div>
               ) : (
@@ -269,34 +265,6 @@ export default function StatsPanel({
               <span className="text-[10px] text-slate-400 italic shrink-0">Tìm đường ngắn nhất từ {getLabel(startNodeId)} ➔ Tất cả</span>
             )}
           </div>
-
-          {/* HÀNG ĐỢI (Q) */}
-          <div className="flex-1 min-h-[38px] px-3 py-1 bg-slate-950/40 border border-slate-850 rounded-lg flex items-center justify-between gap-1 overflow-hidden">
-            <span className="text-[9.5px] text-slate-400 font-extrabold flex items-center gap-1 font-mono tracking-wider shrink-0">
-              <ListOrdered className="text-indigo-400 w-3.5 h-3.5" /> HÀNG ĐỢI (Q):
-            </span>
-            {queue && queue.length > 0 ? (
-              <div className="flex items-center gap-1 overflow-x-auto scrollbar-none py-0.5 max-w-[250px] justify-end flex-1">
-                {queue.map((item, idx) => (
-                  <div 
-                    key={idx}
-                    className={`flex items-center gap-0.5 px-1 py-0.5 rounded border text-[9.5px] font-mono shrink-0 ${
-                      idx === 0 
-                        ? 'bg-amber-500/10 border-amber-500/30 text-amber-400 font-bold' 
-                        : 'bg-slate-900/40 border-slate-800/85 text-slate-400'
-                    }`}
-                  >
-                    <span className="font-extrabold">{getLabel(item.nodeId)}</span>
-                    <span className="text-slate-650 text-[8px]">:</span>
-                    <span className="text-slate-200">{item.distance === Infinity ? '∞' : item.distance}</span>
-                  </div>
-                ))}
-              </div>
-            ) : (
-              <span className="text-[10px] text-slate-500 italic shrink-0">Đã rỗng (Duyệt xong)</span>
-            )}
-          </div>
-
         </div>
 
         {/* Trace Table Area */}
@@ -439,7 +407,7 @@ export default function StatsPanel({
           </div>
           <div className="flex-1 flex flex-col gap-0.5 select-text">
             <span className="text-[10px] uppercase font-black text-indigo-400 tracking-wider font-sans">
-              CHÚ GIẢI TỪNG BƯỚC (STEP-BY-STEP EXPLANATION):
+              CHÚ GIẢI TỪNG BƯỚC:
             </span>
             <p className="text-xs text-slate-200 leading-relaxed font-sans font-medium">
               {activeStep ? activeStep.explanation : 'Đang ở trạng thái sẵn sàng. Nhấn nút phát tự động hoặc các bước kế tiếp để bắt đầu từng bước giải thuật.'}
@@ -456,7 +424,7 @@ export default function StatsPanel({
           >
             <div className="flex items-center gap-1.5">
               <Info className="w-3.5 h-3.5 text-blue-400" />
-              <span>Giải thích bảng ký hiệu diệt (Dijkstra Theory Sheet)</span>
+              <span>Giải thích bảng ký hiệu duyệt</span>
             </div>
             <div className="flex items-center gap-1 text-[9px] text-slate-500 font-mono">
               <span>{showExplanation ? 'Thu gọn ▲' : 'Xem chi tiết ▼'}</span>

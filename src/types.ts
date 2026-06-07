@@ -26,7 +26,7 @@ export interface DijkstraStep {
   explanation: string; // Explanations in Vietnamese
 }
 
-export type CodeLanguage = 'pseudo-c' | 'cpp' | 'python' | 'javascript';
+export type CodeLanguage = 'pseudo-c' | 'c';
 
 export interface CodeLine {
   key: string;

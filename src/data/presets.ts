@@ -1,7 +1,7 @@
 import { SavedPreset } from '../types';
 
 export const travelMapPreset: SavedPreset = {
-  name: 'Bản Đồ Thành Phố Việt Nam',
+  name: 'Đồ Thị Liên Tỉnh Việt Nam',
   nodes: [
     { id: 'HN', label: 'HN', x: 250, y: 80 },
     { id: 'V', label: 'V', x: 230, y: 180 },
