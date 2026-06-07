@@ -1,5 +1,5 @@
 {
-  "name": "Dijkstra Visualizer",
+  "name": "Dijkstra Visualize",
   "description": "An interactive visualization platform for Dijkstra's Shortest Path Algorithm featuring dynamic graph creation, live code tracing, step-by-step executions, and hand-solved trace tables.",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]

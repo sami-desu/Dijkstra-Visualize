@@ -153,12 +153,15 @@ export default function App() {
       <header id="app-header" className="bg-[#09090c]/90 border-b border-slate-900 shrink-0 z-30 shadow-md backdrop-blur-md px-6 py-2">
         <div className="max-w-[1850px] mx-auto flex items-center justify-between gap-4 flex-wrap">
           <div className="flex items-center gap-3">
-            <div className="w-7 h-7 bg-gradient-to-tr from-blue-600 to-indigo-600 rounded-lg flex items-center justify-center font-black text-white shadow-lg shadow-blue-500/10 text-xs">
-              D
-            </div>
+            <img 
+              src="/favicon.ico" 
+              alt="Logo" 
+              className="w-11 h-11 rounded-md object-contain bg-slate-900/20 border border-slate-800/60 shadow-md shadow-blue-500/5 transition-transform duration-200 hover:scale-105"
+              referrerPolicy="no-referrer"
+            />
             <div>
               <h1 className="text-xs font-black text-white tracking-wider flex items-center gap-2">
-                DIJKSTRA COCKPIT
+                DIJKSTRA VISUALIZE
                 <span className="text-[8.5px] text-blue-400 font-mono tracking-wider bg-blue-500/10 px-1.5 py-0.5 rounded border border-blue-900/30 font-bold uppercase">
                   Trực quan hóa Thuật toán & Giải Tay
                 </span>
@@ -503,7 +506,7 @@ export default function App() {
         <div className="max-w-[1850px] mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-1">
           <div className="flex items-center gap-1 font-mono">
             <Zap className="w-3 h-3 text-blue-500 animate-pulse" />
-            <span>Dijkstra Multi-Pane Visualizer Layout — Interactive University Workbench</span>
+            <span>Dijkstra Visualize Layout — Interactive University Workbench</span>
           </div>
           <div className="text-slate-650 font-medium">
             <span>Thiết kế tối ưu hóa 2 cột toàn màn hình • Trực quan hóa giải đồ thị bằng tay chuẩn sư phạm</span>

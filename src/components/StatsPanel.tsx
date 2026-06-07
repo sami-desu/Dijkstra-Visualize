@@ -273,16 +273,16 @@ export default function StatsPanel({
             <thead className="sticky top-0 bg-[#0d0d10] z-35">
               <tr className="border-b border-slate-800 bg-[#0d0d10]/95 font-mono text-slate-300">
                 <th className={`py-1.5 px-1 font-black text-center border-r border-slate-800 max-w-[40px] text-slate-200 ${headerFontSizeClass}`}>
-                  Iteration
+                  Lần lặp
                 </th>
                 <th className={`py-1.5 px-1 font-black text-center border-r border-slate-800 min-w-[70px] text-slate-200 ${headerFontSizeClass}`}>
-                  unmarked
+                  Chưa xét
                 </th>
                 <th className={`py-1.5 px-1 font-black text-center border-r border-slate-800 min-w-[70px] text-slate-200 ${headerFontSizeClass}`}>
-                  marked
+                  Đã chốt
                 </th>
                 <th className={`py-1.5 px-1 font-black text-center border-r border-slate-800 min-w-[65px] text-slate-200 ${headerFontSizeClass}`}>
-                  Current
+                  Đang xét
                 </th>
                 {nodes.map((node) => {
                   const isStart = node.id === startNodeId;
@@ -435,10 +435,10 @@ export default function StatsPanel({
           {showExplanation && (
             <div className="px-3 pb-2 pt-1 border-t border-slate-900/40 text-[10px] leading-relaxed text-slate-400 select-text">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-1 text-slate-450">
-                <div>• <b className="text-slate-300 font-mono">Iteration</b>: Thứ tự bước lặp giải thuật chốt đỉnh tối ưu.</div>
-                <div>• <b className="text-slate-300 font-mono">unmarked</b>: Tập hợp các đỉnh chưa chốt trong bước lặp đó.</div>
-                <div>• <b className="text-slate-300 font-mono">marked</b>: Tập hợp các đỉnh đã chốt tối ưu cố định giá trị.</div>
-                <div>• <b className="text-slate-300 font-mono">Current</b>: Đỉnh đang duyệt thư giãn <b className="text-amber-400">u = ...</b> có d[u] tối thiểu.</div>
+                <div>• <b className="text-slate-300 font-mono">Lần lặp</b>: Thứ tự bước lặp giải thuật chốt đỉnh tối ưu.</div>
+                <div>• <b className="text-slate-300 font-mono">Chưa xét</b>: Tập hợp các đỉnh chưa chốt trong bước lặp đó.</div>
+                <div>• <b className="text-slate-300 font-mono">Đã chốt</b>: Tập hợp các đỉnh đã chốt tối ưu cố định giá trị.</div>
+                <div>• <b className="text-slate-300 font-mono">Đang xét</b>: Đỉnh đang duyệt thư giãn <b className="text-amber-400">u = ...</b> có d[u] tối thiểu.</div>
                 <div>• <b className="text-emerald-400 font-bold">Inf</b>: Khoảng cách vô cùng (chưa có đường đi tới đỉnh đó).</div>
               </div>
             </div>

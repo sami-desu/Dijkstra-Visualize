@@ -124,22 +124,54 @@ export default function CodeViewer({
   const currentTemplate = codeTemplates[language][dsType];
   const activeLineKey = activeStep ? activeStep.codeLineKey : '';
 
-  // Auto-scroll to active code line in simulation step
+  // Auto-scroll to active code line in simulation step - upgraded to show the entire highlighted block
   useEffect(() => {
     if (activeStep && activeMode === 'code') {
-      const activeEl = document.getElementById('active-code-line');
-      if (activeEl) {
-        activeEl.scrollIntoView({
-          behavior: 'smooth',
-          block: 'nearest'
-        });
+      const container = document.getElementById('code-scroll-container');
+      if (container) {
+        const highlighted = container.querySelectorAll('.code-highlighted-line');
+        if (highlighted.length > 0) {
+          const first = highlighted[0] as HTMLElement;
+          const last = highlighted[highlighted.length - 1] as HTMLElement;
+          
+          const containerHeight = container.clientHeight;
+          const firstOffset = first.offsetTop;
+          const lastOffset = last.offsetTop + last.offsetHeight;
+          const blockHeight = lastOffset - firstOffset;
+          
+          if (blockHeight <= containerHeight) {
+            // Entire block fits: center the block
+            const targetScrollTop = firstOffset - (containerHeight - blockHeight) / 2;
+            container.scrollTo({
+              top: Math.max(0, targetScrollTop),
+              behavior: 'smooth'
+            });
+          } else {
+            // Block is taller than container: show from starting line down
+            container.scrollTo({
+              top: Math.max(0, firstOffset - 20),
+              behavior: 'smooth'
+            });
+          }
+        }
       }
     }
   }, [activeLineKey, activeMode, language, dsType, activeStep]);
 
   // Simple clean tokenizer for syntax coloring
   const formatSyntaxLine = (text: string) => {
-    if (text.trim().startsWith('//') || text.trim().startsWith('#')) {
+    let codePart = text;
+    let commentPart = '';
+    
+    const doubleSlashIndex = text.indexOf('//');
+    if (doubleSlashIndex !== -1) {
+      codePart = text.substring(0, doubleSlashIndex);
+      commentPart = text.substring(doubleSlashIndex);
+    } else if (text.trim().startsWith('#')) {
+      return <span className="text-emerald-500 font-normal italic">{text}</span>;
+    }
+
+    if (codePart.trim() === '' && commentPart !== '') {
       return <span className="text-emerald-500 font-normal italic">{text}</span>;
     }
 
@@ -153,9 +185,9 @@ export default function CodeViewer({
       'INFINITY', 'INF', 'NULL', 'visited', 'dist', 'prev', 'pq'
     ];
 
-    const words = text.split(/(\s+|\(|\)|\{|\}|\[|\]|:|,|==|===|\+|<|=|;)/);
+    const words = codePart.split(/(\s+|\(|\)|\{|\}|\[|\]|:|,|==|===|\+|<|=|;)/);
 
-    return words.map((word, i) => {
+    const formattedCode = words.map((word, i) => {
       const cleanWord = word.trim();
       if (keywords.includes(cleanWord)) {
         return <span key={i} className="text-pink-500 font-semibold">{word}</span>;
@@ -171,6 +203,17 @@ export default function CodeViewer({
       }
       return <span key={i} className="text-slate-100">{word}</span>;
     });
+
+    if (commentPart !== '') {
+      return (
+        <React.Fragment>
+          {formattedCode}
+          <span className="text-emerald-500 font-normal italic">{commentPart}</span>
+        </React.Fragment>
+      );
+    }
+
+    return formattedCode;
   };
 
   return (
@@ -303,7 +346,7 @@ export default function CodeViewer({
           </div>
 
           {/* Code Text Window */}
-          <div className="flex-1 h-0 overflow-auto rounded-xl bg-slate-950/40 p-3 font-mono border border-slate-900/80 leading-snug scrollbar-thin scrollbar-thumb-slate-800/85 relative">
+          <div id="code-scroll-container" className="flex-1 h-0 overflow-auto rounded-xl bg-slate-950/40 p-3 font-mono border border-slate-900/80 leading-snug scrollbar-thin scrollbar-thumb-slate-800/85 relative">
             <div className="min-w-[500px] w-full">
               {(() => {
                 let hasSetActiveId = false;
@@ -320,7 +363,7 @@ export default function CodeViewer({
                       id={assignActiveId ? "active-code-line" : undefined}
                       className={`group flex items-start transition-all duration-150 py-[1.5px] px-2 rounded ${
                         isHighlighted 
-                          ? 'bg-amber-500/15 text-white font-semibold border-l-4 border-amber-500 -ml-1 shadow-sm' 
+                          ? 'code-highlighted-line bg-amber-500/15 text-white font-semibold border-l-4 border-amber-500 -ml-1 shadow-sm' 
                           : 'border-l-4 border-transparent text-slate-400 hover:bg-slate-900/15'
                       }`}
                     >

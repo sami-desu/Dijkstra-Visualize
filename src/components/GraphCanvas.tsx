@@ -50,7 +50,7 @@ export default function GraphCanvas({
   const [zoom, setZoom] = useState(1);
   const [isPanning, setIsPanning] = useState(false);
   const [draggedNodeId, setDraggedNodeId] = useState<string | null>(null);
-  const [showInstructions, setShowInstructions] = useState(true);
+  const [showInstructions, setShowInstructions] = useState(false);
   
   // Edge building state
   const [edgeSourceId, setEdgeSourceId] = useState<string | null>(null);
